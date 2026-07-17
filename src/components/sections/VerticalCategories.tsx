@@ -54,7 +54,7 @@ export function VerticalCategories() {
   return (
     <section
       ref={sectionRef}
-      className="py-10 lg:py-12 relative overflow-hidden transition-colors duration-700"
+      className="py-2 lg:py-4 relative overflow-hidden transition-colors duration-700"
       style={{ backgroundColor: bgColor }}
     >
       <div className="absolute inset-0 opacity-[0.06]"
@@ -66,16 +66,16 @@ export function VerticalCategories() {
 
       <div className="container mx-auto px-4 relative">
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6 lg:mb-8">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-2 lg:mb-8">
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-white/80 backdrop-blur-sm rounded-full shadow-sm mb-2">
+            {/* <div className="inline-flex items-center gap-2 px-3 py-1 bg-white/80 backdrop-blur-sm rounded-full shadow-sm mb-2">
               <BookOpen className="w-3.5 h-3.5 text-[hsl(var(--deep-brown))]" />
               <p className="text-xs font-medium tracking-widest text-[hsl(var(--deep-brown))]">GENRES</p>
-            </div>
-            <h2 className="text-2xl md:text-3xl font-serif font-bold tracking-tight text-[hsl(var(--deep-brown))]">
+            </div> */}
+            {/* <h2 className="text-2xl md:text-3xl font-serif font-bold tracking-tight text-[hsl(var(--deep-brown))]">
               Shop by Category
-            </h2>
-            <p className="mt-1 text-sm md:text-base text-muted-foreground/80 max-w-md">
+            </h2> */}
+            <p className="mt-1 text-sm md:text-base text-foreground/80 max-w-md">
               Browse our curated genres. Find your next favorite read.
             </p>
           </div>
@@ -300,14 +300,14 @@ export function VerticalCategories() {
         </div>
 
         {/* Pause indicator */}
-        {isPaused && (
+        {/* {isPaused && (
           <div className="text-center mt-6">
             <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 bg-white/70 backdrop-blur-sm rounded-full text-[10px] text-muted-foreground shadow-sm">
               <span className="w-1.5 h-1.5 rounded-full bg-[hsl(var(--deep-brown))] animate-pulse" />
               Autoplay paused
             </span>
           </div>
-        )}
+        )} */}
       </div>
     </section>
   );

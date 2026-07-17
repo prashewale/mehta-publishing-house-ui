@@ -1,15 +1,18 @@
 import { SaleOfferSlider } from "./SaleOfferSlider";
-import { VideoSlider } from "./VideoSlider";
 
-export function SaleOfferWithFeaturedVideo() {
+interface Props {
+  /** Compact layout for 1/3 column; skips outer container */
+  embedded?: boolean;
+}
+
+export function SaleOfferWithFeaturedVideo({ embedded = false }: Props) {
+  if (embedded) {
+    return <SaleOfferSlider compact />;
+  }
+
   return (
-    <section className="container mx-auto px-4 py-8">
-      <div className="grid lg:grid-cols-[1fr_460px] gap-4 items-stretch">
-        <SaleOfferSlider />
-        <div className="hidden lg:block">
-          <VideoSlider />
-        </div>
-      </div>
+    <section className="container mx-auto px-4 py-4">
+      <SaleOfferSlider />
     </section>
   );
 }

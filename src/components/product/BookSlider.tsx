@@ -62,7 +62,9 @@ export function BookSlider({ books, minVisible = 6, autoSlideInterval = 4000 }: 
   const widthClass =
     minVisible === 6
       ? "w-[44%] sm:w-[30%] md:w-[22%] lg:w-[16%]"
-      : "w-[44%] sm:w-[30%] md:w-[22%] lg:w-[19%]";
+      : minVisible === 4
+        ? "w-[48%] sm:w-[32%] md:w-[28%] lg:w-[23%]"
+        : "w-[44%] sm:w-[30%] md:w-[22%] lg:w-[19%]";
 
   return (
     <div

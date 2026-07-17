@@ -22,6 +22,8 @@ import PublishEbook from "@/pages/PublishEbook";
 import NotFound from "@/pages/NotFound";
 import Profile from "@/pages/Profile";
 import Careers from "@/pages/Careers";
+import Rights from "@/pages/Rights";
+import Catalog from "@/pages/Catalog";
 import { MembershipFloat } from "./components/sections/MembershipFloat";
 
 const queryClient = new QueryClient();
@@ -50,6 +52,8 @@ const App = () => (
               <Route path="/events" element={<Events />} />
               <Route path="/distributors" element={<Distributors />} />
               <Route path="/publish" element={<PublishEbook />} />
+              <Route path="/rights" element={<Rights />} />
+              <Route path="/catalog" element={<Catalog />} />
               <Route path="/profile" element={<Profile />} />
               <Route path="/careers" element={<Careers />} />
               <Route path="*" element={<NotFound />} />
