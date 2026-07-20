@@ -35,7 +35,7 @@ const App = () => (
       <BrowserRouter>
         <div className="flex min-h-screen flex-col">
           <Header />
-          <div className="flex-1">
+          <div className="flex-1 px-4">
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/books" element={<Books />} />

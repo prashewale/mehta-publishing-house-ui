@@ -14,6 +14,8 @@ interface Props {
   embedded?: boolean;
   /** Fewer visible cards when in a narrower column */
   minVisible?: number;
+  /** Compact card sizing for tighter layouts */
+  compact?: boolean;
   className?: string;
 }
 
@@ -25,6 +27,7 @@ function Section({
   bg = "",
   embedded = false,
   minVisible = 6,
+  compact = false,
   className,
 }: Props) {
   if (!books.length) return null;
@@ -45,12 +48,12 @@ function Section({
           View all <ArrowRight className="h-4 w-4" />
         </Link>
       </div>
-      <BookSlider books={books} minVisible={minVisible} />
+      <BookSlider books={books} minVisible={minVisible} compact={compact} />
     </>
   );
 
   if (embedded) {
-    return <div className={cn("h-full", className)}>{inner}</div>;
+    return <div className={cn("h-full px-3 md:px-5", className)}>{inner}</div>;
   }
 
   return (
@@ -70,7 +73,8 @@ export function NewArrivalsSection({
       subtitle="Fresh off the press"
       books={BOOKS.slice(6, 20)}
       embedded={embedded}
-      minVisible={minVisible ?? (embedded ? 4 : 6)}
+      minVisible={minVisible ?? 6}
+      compact
     />
   );
 }
@@ -114,6 +118,6 @@ export function RecentBestsellerSection() {
   const books = [...BOOKS]
     .filter((b) => b.isBestseller)
     .sort((a, b) => b.rating - a.rating)
-    .slice(8, 20);
+    .slice(5, 20);
   return <Section title="Recent Bestsellers" subtitle="Trending right now" books={books} />;
 }

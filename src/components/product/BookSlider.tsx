@@ -9,9 +9,11 @@ interface Props {
   minVisible?: number;
   /** Interval in ms between auto-slides. Default 4000. */
   autoSlideInterval?: number;
+  /** Compact card sizing for tighter layouts */
+  compact?: boolean;
 }
 
-export function BookSlider({ books, minVisible = 6, autoSlideInterval = 4000 }: Props) {
+export function BookSlider({ books, minVisible = 6, autoSlideInterval = 4000, compact = false }: Props) {
   const ref = useRef<HTMLDivElement>(null);
   const [isPaused, setIsPaused] = useState(false);
 
@@ -61,7 +63,7 @@ export function BookSlider({ books, minVisible = 6, autoSlideInterval = 4000 }: 
   // Tailwind needs static classes; map for common values
   const widthClass =
     minVisible === 6
-      ? "w-[44%] sm:w-[30%] md:w-[22%] lg:w-[16%]"
+      ? "w-[44%] sm:w-[30%] md:w-[calc((100%-64px)/5)] lg:w-[calc((100%-80px)/6)]"
       : minVisible === 4
         ? "w-[48%] sm:w-[32%] md:w-[28%] lg:w-[23%]"
         : "w-[44%] sm:w-[30%] md:w-[22%] lg:w-[19%]";
@@ -82,7 +84,7 @@ export function BookSlider({ books, minVisible = 6, autoSlideInterval = 4000 }: 
             key={b.id}
             className={`shrink-0 snap-start ${widthClass}`}
           >
-            <BookCard book={b} />
+            <BookCard book={b} compact={compact} />
           </div>
         ))}
       </div>

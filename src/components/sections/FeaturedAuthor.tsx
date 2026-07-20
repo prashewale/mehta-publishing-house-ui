@@ -49,9 +49,9 @@ export function FeaturedAuthor() {
   }, []);
 
   const displayBooks =
-    authorBooks.length >= 6
-      ? authorBooks.slice(0, 6)
-      : [...authorBooks, ...BOOKS.filter((b) => b.author !== featuredAuthor)].slice(0, 6);
+    authorBooks.length >= 4
+      ? authorBooks.slice(0, 4)
+      : [...authorBooks, ...BOOKS.filter((b) => b.author !== featuredAuthor)].slice(0, 4);
 
   return (
     <section className="py-10">
@@ -107,7 +107,7 @@ export function FeaturedAuthor() {
             <AuthorEllipse name={featuredAuthor} />
 
             {/* Book covers — slight fan / lift on hover */}
-            <div className="flex min-w-0 flex-1 items-end justify-center gap-2.5 overflow-x-auto py-2 sm:gap-3">
+            <div className="grid grid-cols-4 gap-2 min-w-0 flex-1 py-2 sm:gap-3">
               {displayBooks.map((book, i) => (
                 <motion.div
                   key={book.id}
@@ -115,7 +115,7 @@ export function FeaturedAuthor() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: 0.08 + i * 0.05, duration: 0.4 }}
-                  className="shrink-0"
+                  className="min-w-0"
                 >
                   <Link to={`/books/${book.slug}`} className="group/book block">
                     <div className="relative">
@@ -124,7 +124,7 @@ export function FeaturedAuthor() {
                         src={book.cover}
                         alt={book.title}
                         title={book.title}
-                        className="relative h-28 w-[76px] rounded-lg object-cover shadow-md ring-1 ring-black/8 transition-all duration-300 group-hover/book:-translate-y-2 group-hover/book:shadow-xl sm:h-32 sm:w-[88px] md:h-36 md:w-24"
+                        className="relative w-full aspect-[3/4] rounded-lg object-cover shadow-md ring-1 ring-black/8 transition-all duration-300 group-hover/book:-translate-y-2 group-hover/book:shadow-xl"
                       />
                     </div>
                   </Link>
@@ -133,7 +133,7 @@ export function FeaturedAuthor() {
             </div>
 
             {/* Right — bio */}
-            <div className="w-full shrink-0 space-y-3 text-center lg:w-[300px] xl:w-[340px] lg:text-left">
+            <div className="w-full shrink-0 space-y-3 text-center lg:w-[500px] xl:w-[540px] lg:text-left">
               <div>
                 <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-amber-700/80">
                   This month&apos;s pick

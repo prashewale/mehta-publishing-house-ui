@@ -6,7 +6,7 @@ import { useCart } from "@/lib/store";
 import { useMembership, getMembershipPrice } from "@/lib/membership-store";
 import { Button } from "@/components/ui/button";
 
-export function BookCard({ book }: { book: Book }) {
+export function BookCard({ book, compact = false }: { book: Book; compact?: boolean }) {
   const addItem = useCart((s) => s.addItem);
   const discountPercent = useMembership((s) => s.getDiscountPercent());
   const basePrice = book.discountPrice || book.price;
@@ -17,9 +17,9 @@ export function BookCard({ book }: { book: Book }) {
     <motion.div
       whileHover={{ y: -4 }}
       transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
-      className="group relative flex flex-col space-y-3"
+      className={`group relative flex flex-col rounded-xl border-2 border-[hsl(var(--sienna))]/20 p-1.5 ${compact ? "space-y-1.5" : "space-y-3"}`}
     >
-      <div className="relative aspect-[3/4] overflow-hidden rounded-xl bg-muted shadow-soft">
+      <div className="relative aspect-[3/4] overflow-hidden rounded-lg bg-muted shadow-soft">
         <Link to={`/books/${book.slug}`}>
           <img
             src={book.cover}
@@ -48,26 +48,26 @@ export function BookCard({ book }: { book: Book }) {
         </Button>
       </div>
 
-      <div className="space-y-1">
+      <div className={compact ? "space-y-0.5" : "space-y-1"}>
         <Link to={`/books/${book.slug}`} className="block">
-          <h3 className="font-serif text-base font-semibold leading-tight group-hover:text-primary transition-colors line-clamp-2">
+          <h3 className={`font-serif font-semibold leading-tight group-hover:text-primary transition-colors line-clamp-2 ${compact ? "text-xs" : "text-base"}`}>
             {book.title}
           </h3>
         </Link>
-        <p className="text-sm text-muted-foreground">{book.author}</p>
-        <div className="flex items-center justify-between pt-1">
+        <p className={compact ? "text-xs text-muted-foreground" : "text-sm text-muted-foreground"}>{book.author}</p>
+        <div className={`flex items-center justify-between ${compact ? "pt-0" : "pt-1"}`}>
           <div className="flex flex-col gap-0.5">
             <div className="flex items-center gap-2">
-              <span className="font-semibold text-primary">
+              <span className={`font-semibold text-primary ${compact ? "text-xs" : ""}`}>
                 ₹{memberPrice.toFixed(2)}
               </span>
               {book.discountPrice && (
-                <span className="text-sm text-muted-foreground line-through">
+                <span className={`${compact ? "text-[10px]" : "text-sm"} text-muted-foreground line-through`}>
                   ₹{book.price.toFixed(2)}
                 </span>
               )}
             </div>
-            {hasMembership && (
+            {hasMembership && !compact && (
               <span className="inline-flex items-center gap-1 text-[10px] font-semibold text-primary">
                 <Crown className="h-3 w-3" /> Member saves ₹{(basePrice - memberPrice).toFixed(0)}
               </span>

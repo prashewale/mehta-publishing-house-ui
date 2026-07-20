@@ -12,7 +12,7 @@ import { Button } from "@/components/ui/button";
 type Tab = "combo" | "sale" | "reviews";
 
 // ── 50% Off books ──
-const HALF_OFF_BOOKS = BOOKS.filter(b => b.onSale || b.discountPrice).slice(0, 8);
+const HALF_OFF_BOOKS = BOOKS.filter(b => b.onSale || b.discountPrice).slice(0, 6);
 
 // ── Book reviews (mock) ──
 const BOOK_REVIEWS = [
@@ -38,7 +38,7 @@ function StarRow({ rating }: { rating: number }) {
 function MakeComboTab() {
   const addItem = useCart(s => s.addItem);
   const [selected, setSelected] = useState<typeof BOOKS>([]);
-  const COMBO_BOOKS = BOOKS.slice(0, 12);
+  const COMBO_BOOKS = BOOKS.slice(0, 6);
   const DISCOUNT = selected.length >= 3 ? 0.35 : selected.length === 2 ? 0.20 : 0;
   const subtotal = selected.reduce((sum, b) => sum + (b.discountPrice || b.price), 0);
   const savings = subtotal * DISCOUNT;
@@ -63,7 +63,7 @@ function MakeComboTab() {
         <p className="text-sm text-muted-foreground mb-4">
           Select <span className="font-semibold text-foreground">2–6 books</span> to build your combo and save up to <span className="font-semibold text-green-600">35%</span>! Buy 100+ quantity to unlock bulk pricing.
         </p>
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+        <div className="grid grid-cols-6 gap-2">
           {COMBO_BOOKS.map(book => {
             const isSelected = !!selected.find(b => b.id === book.id);
             return (
@@ -83,14 +83,14 @@ function MakeComboTab() {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                   {isSelected && (
                     <div className="absolute inset-0 bg-primary/20 flex items-center justify-center">
-                      <CheckCircle2 className="h-8 w-8 text-primary drop-shadow-lg" />
+                      <CheckCircle2 className="h-6 w-6 text-primary drop-shadow-lg" />
                     </div>
                   )}
                 </div>
-                <div className="p-2">
-                  <p className="text-xs font-semibold line-clamp-1">{book.title}</p>
-                  <p className="text-[10px] text-muted-foreground line-clamp-1">{book.author}</p>
-                  <p className="text-xs font-bold text-primary mt-0.5">₹{(book.discountPrice || book.price).toFixed(0)}</p>
+                <div className="p-1.5">
+                  <p className="text-[10px] font-semibold line-clamp-1">{book.title}</p>
+                  <p className="text-[8px] text-muted-foreground line-clamp-1">{book.author}</p>
+                  <p className="text-[10px] font-bold text-primary mt-0.5">₹{(book.discountPrice || book.price).toFixed(0)}</p>
                 </div>
               </motion.button>
             );
@@ -185,7 +185,7 @@ function SaleBooksTab() {
           <span className="font-bold">Limited time offer:</span> These books are available at up to 50% off. Grab them before the sale ends!
         </p>
       </div>
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+      <div className="grid grid-cols-6 gap-2">
         {HALF_OFF_BOOKS.map((book, i) => {
           const discount = book.discountPrice
             ? Math.round(((book.price - book.discountPrice) / book.price) * 100)
@@ -197,32 +197,32 @@ function SaleBooksTab() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.06 }}
-              className="group relative overflow-hidden rounded-2xl border bg-card shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
+              className="group relative overflow-hidden rounded-xl border bg-card shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
             >
               <div className="relative aspect-[2/3] overflow-hidden">
                 <img src={book.cover} alt={book.title} className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-500" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
                 {discount > 0 && (
-                  <div className="absolute top-2 left-2 rounded-full bg-red-500 px-2.5 py-1 text-[10px] font-bold text-white shadow">
+                  <div className="absolute top-1.5 left-1.5 rounded-full bg-red-500 px-1.5 py-0.5 text-[8px] font-bold text-white shadow">
                     {discount}% OFF
                   </div>
                 )}
                 <button
                   onClick={() => addItem(book, book.formats[0])}
-                  className="absolute bottom-2 right-2 flex h-8 w-8 items-center justify-center rounded-full bg-white text-foreground opacity-0 group-hover:opacity-100 transition-opacity shadow-lg hover:bg-red-500 hover:text-white"
+                  className="absolute bottom-1.5 right-1.5 flex h-6 w-6 items-center justify-center rounded-full bg-white text-foreground opacity-0 group-hover:opacity-100 transition-opacity shadow-lg hover:bg-red-500 hover:text-white"
                 >
-                  <ShoppingCart className="h-3.5 w-3.5" />
+                  <ShoppingCart className="h-3 w-3" />
                 </button>
-                <div className="absolute bottom-2 left-2 right-10">
-                  <p className="text-xs font-bold text-white line-clamp-2">{book.title}</p>
+                <div className="absolute bottom-1.5 left-1.5 right-8">
+                  <p className="text-[9px] font-bold text-white line-clamp-1">{book.title}</p>
                 </div>
               </div>
-              <div className="p-3">
-                <p className="text-xs text-muted-foreground line-clamp-1 mb-1">{book.author}</p>
-                <div className="flex items-center gap-2">
-                  <span className="text-base font-bold text-red-500">₹{(book.discountPrice || book.price).toFixed(0)}</span>
+              <div className="p-1.5">
+                <p className="text-[8px] text-muted-foreground line-clamp-1 mb-0.5">{book.author}</p>
+                <div className="flex items-center gap-1">
+                  <span className="text-[10px] font-bold text-red-500">₹{(book.discountPrice || book.price).toFixed(0)}</span>
                   {book.discountPrice && (
-                    <span className="text-xs text-muted-foreground line-through">₹{book.price.toFixed(0)}</span>
+                    <span className="text-[8px] text-muted-foreground line-through">₹{book.price.toFixed(0)}</span>
                   )}
                 </div>
               </div>

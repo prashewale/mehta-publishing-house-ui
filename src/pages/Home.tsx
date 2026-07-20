@@ -33,30 +33,32 @@ export default function Home() {
       </section>
 
       <AllTimeBestsellerSection />
+
+      {/* Author Birthday / Festival / Combo Sets — 3 content-rich boxes */}
+      <PromoTripleBox />
+
       <RecentBestsellerSection />
 
       {/* Category — crossword-style grid */}
       <VerticalCategories />
 
-      {/* Author Birthday / Festival / Combo Sets — 3 content-rich boxes */}
-      <PromoTripleBox />
+      {/* Author of the Month — horizontal promo-style block */}
+      <FeaturedAuthor />
 
       {/* MPH Family author photos */}
       <AuthorGallery />
 
-      {/* Editor's Picks */}
-      <FeaturedSection />
-
-      {/* Author of the Month — horizontal promo-style block */}
-      <FeaturedAuthor />
-
       {/* Instagram (1/3) + YouTube (2/3) */}
       <InstagramYouTubeSection />
+
+      {/* Editor's Picks */}
+      <FeaturedSection />
 
       {/* Make Your Own Combo / 50% Off / Book Reviews tabs */}
       <SpecialOffers />
 
       <Testimonials />
+      
       <Newsletter />
     </main>
   );

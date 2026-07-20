@@ -6,9 +6,9 @@ import { BOOKS } from "@/lib/mock-data";
 import { Button } from "@/components/ui/button";
 import { useMembership, getMembershipPrice } from "@/lib/membership-store";
 
-const PICKS = BOOKS.filter((b) => b.isNewRelease || b.onSale).slice(0, 6).length
-  ? BOOKS.filter((b) => b.isNewRelease || b.onSale).slice(0, 6)
-  : BOOKS.slice(0, 6);
+const PICKS = BOOKS.filter((b) => b.isNewRelease || b.onSale).slice(0, 2).length
+  ? BOOKS.filter((b) => b.isNewRelease || b.onSale).slice(0, 2)
+  : BOOKS.slice(0, 2);
 
 export function NewArrivalsHeroSlider() {
   const [i, setI] = useState(0);
