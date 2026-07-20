@@ -13,7 +13,6 @@ import { AuthorGallery } from "@/components/sections/AuthorGallery";
 import { InstagramYouTubeSection } from "@/components/sections/InstagramYouTubeSection";
 import { SpecialOffers } from "@/components/sections/SpecialOffers";
 import { Testimonials } from "@/components/sections/Testimonials";
-import { Newsletter } from "@/components/sections/Newsletter";
 
 export default function Home() {
   return (
@@ -58,8 +57,6 @@ export default function Home() {
       <SpecialOffers />
 
       <Testimonials />
-      
-      <Newsletter />
     </main>
   );
 }

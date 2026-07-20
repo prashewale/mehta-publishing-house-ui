@@ -296,17 +296,17 @@ export function SpecialOffers() {
   ];
 
   return (
-    <section className="py-16 bg-accent/20">
+    <section className="py-5 bg-accent/20">
       <div className="container mx-auto px-4">
-        <motion.div
+        {/* <motion.div
           initial={{ opacity: 0, y: 14 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-10 text-center"
+          className="mb-5 text-center"
         >
           <h2 className="font-serif text-3xl md:text-4xl font-bold">Special Offers & More</h2>
           <p className="mt-2 text-muted-foreground text-base">Deals, discounts, and what readers are saying</p>
-        </motion.div>
+        </motion.div> */}
 
         {/* Tab buttons */}
         <div className="flex flex-wrap justify-center gap-3 mb-8">

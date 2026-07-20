@@ -3,11 +3,11 @@ import { TESTIMONIALS } from '@/lib/mock-data';
 
 export function Testimonials() {
   return (
-    <section className="py-20">
+    <section className="py-10">
       <div className="container mx-auto px-4">
         <div className="text-center space-y-2 mb-12">
           <h2 className="text-3xl md:text-4xl font-serif font-bold">What Readers Say</h2>
-          <p className="text-muted-foreground">Join thousands of happy book lovers</p>
+          {/* <p className="text-muted-foreground">Join thousands of happy book lovers</p> */}
         </div>
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {TESTIMONIALS.map((t) => (
